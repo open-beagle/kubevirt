@@ -35,7 +35,7 @@ steps:
       proxy:
         from_secret: SOCKS5_PROXY
 
-  - name: golang
+  - name: golang-amd64
     image: registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-amd64
     environment:
       BUILD_VERSION: v1.3.1

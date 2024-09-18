@@ -227,9 +227,9 @@ func Execute() {
 	app.crdInformer = app.informerFactory.CRD()
 
 	onOpenShift, err := clusterutil.IsOnOpenShift(app.clientSet)
-	if err != nil {
-		golog.Fatalf("Error determining cluster type: %v", err)
-	}
+	// if err != nil {
+	// 	golog.Fatalf("Error determining cluster type: %v", err)
+	// }
 	if onOpenShift {
 		log.Log.Info("we are on openshift")
 		app.informers.SCC = app.informerFactory.OperatorSCC()

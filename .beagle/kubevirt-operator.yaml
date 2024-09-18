@@ -6939,22 +6939,6 @@ rules:
   - apiGroups:
       - ""
     resources:
-      - configmaps
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - route.openshift.io
-    resources:
-      - routes
-    verbs:
-      - list
-      - get
-      - watch
-  - apiGroups:
-      - ""
-    resources:
       - secrets
     verbs:
       - list
@@ -6967,36 +6951,6 @@ rules:
     verbs:
       - list
       - get
-      - watch
-  - apiGroups:
-      - coordination.k8s.io
-    resources:
-      - leases
-    verbs:
-      - get
-      - list
-      - watch
-      - delete
-      - update
-      - create
-      - patch
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resourceNames:
-      - kubevirt-export-ca
-    resources:
-      - configmaps
-    verbs:
-      - get
-      - list
       - watch
 ---
 apiVersion: rbac.authorization.k8s.io/v1

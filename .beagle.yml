@@ -50,7 +50,6 @@ steps:
     settings:
       dockerfile: .beagle/virt-operator.dockerfile
       base: registry.cn-qingdao.aliyuncs.com/wod/alpine:3-amd64
-      cwd: _output
       repo: wod/kubevirt-operator
       version: v1.3.1
       channel: amd64
@@ -76,7 +75,6 @@ steps:
     settings:
       dockerfile: .beagle/virt-operator.dockerfile
       base: registry.cn-qingdao.aliyuncs.com/wod/alpine:3-arm64
-      cwd: _output
       repo: wod/kubevirt-operator
       version: v1.3.1
       channel: arm64

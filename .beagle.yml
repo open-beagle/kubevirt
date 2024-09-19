@@ -60,6 +60,42 @@ steps:
       registry_password:
         from_secret: REGISTRY_PASSWORD_ALIYUN
 
+  - name: virt-api-amd64
+    image: registry.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
+    settings:
+      dockerfile: .beagle/virt-api.dockerfile
+      base: registry.cn-qingdao.aliyuncs.com/wod/alpine:3-amd64
+      repo: wod/kubevirt-api
+      version: v1.3.1
+      channel: amd64
+      args: "TARGETOS=linux,TARGETARCH=amd64"
+      registry: registry.cn-qingdao.aliyuncs.com
+      registry_user:
+        from_secret: REGISTRY_USER_ALIYUN
+      registry_password:
+        from_secret: REGISTRY_PASSWORD_ALIYUN
+
+  - name: virt-controller-amd64
+    image: registry.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
+    settings:
+      dockerfile: .beagle/virt-controller.dockerfile
+      base: registry.cn-qingdao.aliyuncs.com/wod/alpine:3-amd64
+      repo: wod/kubevirt-controller
+      version: v1.3.1
+      channel: amd64
+      args: "TARGETOS=linux,TARGETARCH=amd64"
+      registry: registry.cn-qingdao.aliyuncs.com
+      registry_user:
+        from_secret: REGISTRY_USER_ALIYUN
+      registry_password:
+        from_secret: REGISTRY_PASSWORD_ALIYUN
+
   - name: golang-arm64
     image: registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-arm64
     environment:
@@ -85,6 +121,42 @@ steps:
       registry_password:
         from_secret: REGISTRY_PASSWORD_ALIYUN
 
+  - name: virt-api-arm64
+    image: registry.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
+    settings:
+      dockerfile: .beagle/virt-api.dockerfile
+      base: registry.cn-qingdao.aliyuncs.com/wod/alpine:3-arm64
+      repo: wod/kubevirt-api
+      version: v1.3.1
+      channel: arm64
+      args: "TARGETOS=linux,TARGETARCH=arm64"
+      registry: registry.cn-qingdao.aliyuncs.com
+      registry_user:
+        from_secret: REGISTRY_USER_ALIYUN
+      registry_password:
+        from_secret: REGISTRY_PASSWORD_ALIYUN
+
+  - name: virt-controller-arm64
+    image: registry.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
+    settings:
+      dockerfile: .beagle/virt-controller.dockerfile
+      base: registry.cn-qingdao.aliyuncs.com/wod/alpine:3-arm64
+      repo: wod/kubevirt-controller
+      version: v1.3.1
+      channel: arm64
+      args: "TARGETOS=linux,TARGETARCH=arm64"
+      registry: registry.cn-qingdao.aliyuncs.com
+      registry_user:
+        from_secret: REGISTRY_USER_ALIYUN
+      registry_password:
+        from_secret: REGISTRY_PASSWORD_ALIYUN
+
   - name: virt-operator-arch
     image: registry.cn-qingdao.aliyuncs.com/wod/devops-docker-manifest:1.0
     settings:
@@ -95,6 +167,29 @@ steps:
         from_secret: REGISTRY_USER_ALIYUN
       password:
         from_secret: REGISTRY_PASSWORD_ALIYUN
+
+  - name: virt-api-arch
+    image: registry.cn-qingdao.aliyuncs.com/wod/devops-docker-manifest:1.0
+    settings:
+      platforms: linux/amd64,linux/arm64
+      template: registry.cn-qingdao.aliyuncs.com/wod/kubevirt-api:v1.3.1-ARCH
+      target: registry.cn-qingdao.aliyuncs.com/wod/kubevirt-api:v1.3.1
+      username:
+        from_secret: REGISTRY_USER_ALIYUN
+      password:
+        from_secret: REGISTRY_PASSWORD_ALIYUN
+
+  - name: virt-controller-arch
+    image: registry.cn-qingdao.aliyuncs.com/wod/devops-docker-manifest:1.0
+    settings:
+      platforms: linux/amd64,linux/arm64
+      template: registry.cn-qingdao.aliyuncs.com/wod/kubevirt-controller:v1.3.1-ARCH
+      target: registry.cn-qingdao.aliyuncs.com/wod/kubevirt-controller:v1.3.1
+      username:
+        from_secret: REGISTRY_USER_ALIYUN
+      password:
+        from_secret: REGISTRY_PASSWORD_ALIYUN
+
 ---
 kind: secret
 name: SOCKS5_PROXY

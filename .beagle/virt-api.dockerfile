@@ -10,7 +10,7 @@ LABEL maintainer=$AUTHOR version=$VERSION
 ARG TARGETOS
 ARG TARGETARCH
 
-COPY ./_out/cmd/virt-operator/virt-operator-$VERSION-$TARGETOS-$TARGETARCH/ /usr/local/bin/
+COPY ./_out/cmd/virt-api/virt-api-$VERSION-$TARGETOS-$TARGETARCH/ /usr/local/bin/
 
 ARG USER=code
 ENV HOME /home/$USER

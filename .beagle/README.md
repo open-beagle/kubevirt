@@ -14,7 +14,7 @@ git merge v1.3.1
 
 ```bash
 # 清理缓存
-rm -rf _out/dist
+sudo rm -rf _out/dist
 
 # amd64
 docker run -it --rm \

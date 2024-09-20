@@ -16,7 +16,7 @@ ARG USER=code
 ENV HOME /home/$USER
 
 # install sudo as root
-RUN apk add --update sudo
+RUN apk add --update sudo bash
 
 # add new user
 RUN adduser -u 1001 -h $HOME -s /bin/bash -D $USER \

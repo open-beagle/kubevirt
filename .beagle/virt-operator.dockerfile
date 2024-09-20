@@ -19,9 +19,9 @@ ENV HOME /home/$USER
 RUN apk add --update sudo bash
 
 # add new user
-RUN adduser -u 1001 -h $HOME -s /bin/bash -D $USER \
+RUN adduser -u 1001 -h $HOME -s /bin/bash -D $USER 1001 \
   && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
   && chmod 0440 /etc/sudoers.d/$USER
 
-USER $USER
+USER 1001:1001
 WORKDIR $HOME

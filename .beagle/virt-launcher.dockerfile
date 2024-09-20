@@ -12,4 +12,4 @@ ARG TARGETARCH
 
 RUN apk add --no-cache libvirt-dev
 
-COPY ./_out/dist/$TARGETARCH/virt-launcher/virt-launcher-$VERSION-$TARGETOS-$TARGETARCH/ /usr/local/bin/
+COPY ./_out/dist/$TARGETARCH/virt-launcher/virt-launcher-$VERSION-$TARGETOS-$TARGETARCH/ /usr/local/bin/virt-launcher

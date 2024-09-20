@@ -13,10 +13,25 @@ git merge v1.3.1
 ## build
 
 ```bash
+# 清理缓存
+rm -rf _out/dist
+
+# amd64
 docker run -it --rm \
 -v $PWD/:/go/src/github.com/kubevirt/kubevirt \
 -w /go/src/github.com/kubevirt/kubevirt \
-registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine \
+-e BUILD_VERSION=v1.3.1 \
+-e BUILD_ARCH=amd64 \
+registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-amd64 \
+bash .beagle/build.sh
+
+# arm64
+docker run -it --rm \
+-v $PWD/:/go/src/github.com/kubevirt/kubevirt \
+-w /go/src/github.com/kubevirt/kubevirt \
+-e BUILD_VERSION=v1.3.1 \
+-e BUILD_ARCH=arm64 \
+registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-arm64 \
 bash .beagle/build.sh
 
 docker pull quay.io/kubevirt/builder:2408161422-1f8c489011 && \
@@ -72,7 +87,7 @@ docker run --rm \
   -e PLUGIN_SECRET_KEY=$PLUGIN_SECRET_KEY \
   -e DRONE_REPO_OWNER="open-beagle" \
   -e DRONE_REPO_NAME="kubevirt" \
-  -e PLUGIN_MOUNT=".git" \
+  -e PLUGIN_MOUNT=".git,_out/dist" \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
   registry.cn-qingdao.aliyuncs.com/wod/devops-s3-cache:1.0

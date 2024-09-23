@@ -1,0 +1,38 @@
+From 432aec5188e433debfe70d6198a44aa49fd4519b Mon Sep 17 00:00:00 2001
+From: shucheng <shucheng@bd-apaas.com>
+Date: Mon, 23 Sep 2024 19:29:22 +0800
+Subject: [PATCH] prom group
+
+---
+ pkg/virt-config/configuration.go | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/pkg/virt-config/configuration.go b/pkg/virt-config/configuration.go
+index 72e5e14b2a..184efb0fcf 100644
+--- a/pkg/virt-config/configuration.go
++++ b/pkg/virt-config/configuration.go
+@@ -26,6 +26,7 @@ import (
+ 	"strings"
+ 	"sync"
+ 
++	promv1 "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
+ 	k8sv1 "k8s.io/api/core/v1"
+ 	extv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
+ 	"k8s.io/apimachinery/pkg/api/resource"
+@@ -127,11 +128,11 @@ func isDataSourceCrd(crd *extv1.CustomResourceDefinition) bool {
+ }
+ 
+ func isServiceMonitor(crd *extv1.CustomResourceDefinition) bool {
+-	return crd.Spec.Names.Kind == "ServiceMonitor"
++	return crd.Spec.Names.Kind == "ServiceMonitor" && crd.Spec.Group == promv1.SchemeGroupVersion.String()
+ }
+ 
+ func isPrometheusRules(crd *extv1.CustomResourceDefinition) bool {
+-	return crd.Spec.Names.Kind == "PrometheusRule"
++	return crd.Spec.Names.Kind == "PrometheusRule" && crd.Spec.Group == promv1.SchemeGroupVersion.String()
+ }
+ 
+ func (c *ClusterConfig) crdAddedDeleted(obj interface{}) {
+-- 
+2.39.2
+

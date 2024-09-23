@@ -18,21 +18,21 @@ sudo rm -rf _out/dist
 
 # amd64
 docker run -it --rm \
--v $PWD/:/go/src/github.com/kubevirt/kubevirt \
--w /go/src/github.com/kubevirt/kubevirt \
--e BUILD_VERSION=v1.3.1 \
--e BUILD_ARCH=amd64 \
-registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-amd64 \
-bash .beagle/build.sh
+  -v $PWD/:/go/src/github.com/kubevirt/kubevirt \
+  -w /go/src/github.com/kubevirt/kubevirt \
+  -e BUILD_VERSION=v1.3.1 \
+  -e BUILD_ARCH=amd64 \
+  registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-amd64 \
+  bash .beagle/build.sh
 
 # arm64
 docker run -it --rm \
--v $PWD/:/go/src/github.com/kubevirt/kubevirt \
--w /go/src/github.com/kubevirt/kubevirt \
--e BUILD_VERSION=v1.3.1 \
--e BUILD_ARCH=arm64 \
-registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-arm64 \
-bash .beagle/build.sh
+  -v $PWD/:/go/src/github.com/kubevirt/kubevirt \
+  -w /go/src/github.com/kubevirt/kubevirt \
+  -e BUILD_VERSION=v1.3.1 \
+  -e BUILD_ARCH=arm64 \
+  registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-arm64 \
+  bash .beagle/build.sh
 
 docker pull quay.io/kubevirt/builder:2408161422-1f8c489011 && \
 docker tag quay.io/kubevirt/builder:2408161422-1f8c489011 registry.cn-qingdao.aliyuncs.com/wod/kubevirt-operator:builder-2408161422-1f8c489011 && \

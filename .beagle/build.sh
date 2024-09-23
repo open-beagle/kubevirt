@@ -18,12 +18,12 @@ if ! [ -d _out/dist/${KUBEVIRT_ARCH} ]; then
 
   git config --global --add safe.directory $PWD
 
-  git apply .beagle/v1.3.1-virt-operator-lease-env.patch
+  git apply .beagle/v1.3.1-virt-operator-prom-group.patch
 
   ./hack/build-go.sh install
   ./hack/build-copy-artifacts.sh
 
-  git apply -R .beagle/v1.3.1-virt-operator-lease-env.patch
+  git apply -R .beagle/v1.3.1-virt-operator-prom-group.patch
 
   mkdir -p _out/dist/${KUBEVIRT_ARCH}/
   mv _out/cmd/* _out/dist/${KUBEVIRT_ARCH}/

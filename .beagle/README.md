@@ -17,6 +17,7 @@ git merge v1.3.1
 sudo rm -rf _out/dist
 
 # amd64
+sudo rm -rf _out/dist/amd64 && \
 docker run -it --rm \
   -v $PWD/:/go/src/github.com/kubevirt/kubevirt \
   -w /go/src/github.com/kubevirt/kubevirt \
@@ -26,6 +27,7 @@ docker run -it --rm \
   bash .beagle/build.sh
 
 # arm64
+sudo rm -rf _out/dist/arm64 && \
 docker run -it --rm \
   -v $PWD/:/go/src/github.com/kubevirt/kubevirt \
   -w /go/src/github.com/kubevirt/kubevirt \
@@ -34,6 +36,7 @@ docker run -it --rm \
   registry.cn-qingdao.aliyuncs.com/wod/golang:1.22-alpine-arm64 \
   bash .beagle/build.sh
 
+# raw build
 docker pull quay.io/kubevirt/builder:2408161422-1f8c489011 && \
 docker tag quay.io/kubevirt/builder:2408161422-1f8c489011 registry.cn-qingdao.aliyuncs.com/wod/kubevirt-operator:builder-2408161422-1f8c489011 && \
 docker push registry.cn-qingdao.aliyuncs.com/wod/kubevirt-operator:builder-2408161422-1f8c489011
